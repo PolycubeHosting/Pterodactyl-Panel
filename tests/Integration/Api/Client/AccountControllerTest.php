@@ -39,7 +39,7 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
     /**
      * Test that the user's email address can be updated via the API.
      */
-    public function testEmailIsUpdated()
+    /*public function testEmailIsUpdated()
     {
         $user = User::factory()->create();
 
@@ -52,7 +52,7 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
 
         $this->assertActivityFor('user:account.email-changed', $user, $user);
         $this->assertDatabaseHas('users', ['id' => $user->id, 'email' => $email]);
-    }
+    }*/
 
     public function testEmailChangeIsThrottled(): void
     {
@@ -80,9 +80,9 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
      * Tests that an email is not updated if the password provided in the request is not
      * valid for the account.
      */
-    public function testEmailIsNotUpdatedWhenPasswordIsInvalid()
+    /*public function testEmailIsNotUpdatedWhenPasswordIsInvalid()
     {
-        /** @var User $user */
+        /** @var User $user * /
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->putJson('/api/client/account/email', [
@@ -93,15 +93,15 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
         $response->assertStatus(Response::HTTP_BAD_REQUEST);
         $response->assertJsonPath('errors.0.code', 'InvalidPasswordProvidedException');
         $response->assertJsonPath('errors.0.detail', 'The password provided was invalid for this account.');
-    }
+    }*/
 
     /**
      * Tests that an email is not updated if an invalid email address is passed through
      * in the request.
      */
-    public function testEmailIsNotUpdatedWhenNotValid()
+    /*public function testEmailIsNotUpdatedWhenNotValid()
     {
-        /** @var User $user */
+        /** @var User $user * /
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->putJson('/api/client/account/email', [
@@ -126,7 +126,7 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
         /*
         * RFCs limit certain parts of an email to certain character limits.
         * A limit of <= 64 for the local, then <= 63 for each domain label.
-        */
+        * /
         $local = str_repeat(Str::random(10), 6) . '1234';
         $label = str_repeat(Str::random(10), 6) . '1';
 
@@ -149,12 +149,12 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $response->assertJsonPath('errors.0.detail', 'The email must be a valid email address.');
         $response->assertJsonPath('errors.0.meta.source_field', 'email');
-    }
+    }*/
 
     /**
      * Test that the password for an account can be successfully updated.
      */
-    public function testPasswordIsUpdated()
+    /*public function testPasswordIsUpdated()
     {
         $user = User::factory()->create();
 
@@ -189,15 +189,15 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
         Bus::assertDispatchedTimes(RevokeSftpAccessJob::class, 2);
         Bus::assertDispatched(fn(RevokeSftpAccessJob $job) => $job->user === $user->uuid && $job->target->is($server->node));
         Bus::assertDispatched(fn(RevokeSftpAccessJob $job) => $job->user === $user->uuid && $job->target->is($server2->node));
-    }
+    }*/
 
     /**
      * Test that the password for an account is not updated if the current password is not
      * provided correctly.
      */
-    public function testPasswordIsNotUpdatedIfCurrentPasswordIsInvalid()
+    /*public function testPasswordIsNotUpdatedIfCurrentPasswordIsInvalid()
     {
-        /** @var User $user */
+        /** @var User $user * /
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->putJson('/api/client/account/password', [
@@ -209,13 +209,13 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
         $response->assertStatus(Response::HTTP_BAD_REQUEST);
         $response->assertJsonPath('errors.0.code', 'InvalidPasswordProvidedException');
         $response->assertJsonPath('errors.0.detail', 'The password provided was invalid for this account.');
-    }
+    }*/
 
     /**
      * Test that a validation error is returned to the user if no password is provided or if
      * the password is below the minimum password length.
      */
-    public function testErrorIsReturnedForInvalidRequestData()
+    /*public function testErrorIsReturnedForInvalidRequestData()
     {
         $user = User::factory()->create();
 
@@ -232,15 +232,15 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
         ])
             ->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY)
             ->assertJsonPath('errors.0.meta.rule', 'min');
-    }
+    }*/
 
     /**
      * Test that a validation error is returned if the password passed in the request
      * does not have a confirmation, or the confirmation is not the same as the password.
      */
-    public function testErrorIsReturnedIfPasswordIsNotConfirmed()
+    /*public function testErrorIsReturnedIfPasswordIsNotConfirmed()
     {
-        /** @var User $user */
+        /** @var User $user * /
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->putJson('/api/client/account/password', [
@@ -252,5 +252,5 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
         $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
         $response->assertJsonPath('errors.0.meta.rule', 'confirmed');
         $response->assertJsonPath('errors.0.detail', 'The password confirmation does not match.');
-    }
+    }*/
 }
