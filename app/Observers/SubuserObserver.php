@@ -4,8 +4,8 @@ namespace Pterodactyl\Observers;
 
 use Pterodactyl\Events;
 use Pterodactyl\Models\Subuser;
-use Pterodactyl\Notifications\AddedToServer;
-use Pterodactyl\Notifications\RemovedFromServer;
+//use Pterodactyl\Notifications\AddedToServer;
+//use Pterodactyl\Notifications\RemovedFromServer;
 
 class SubuserObserver
 {
@@ -24,11 +24,11 @@ class SubuserObserver
     {
         event(new Events\Subuser\Created($subuser));
 
-        $subuser->user->notify(new AddedToServer([
+        /*$subuser->user->notify(new AddedToServer([
             'user' => $subuser->user->name_first,
             'name' => $subuser->server->name,
             'uuidShort' => $subuser->server->uuidShort,
-        ]));
+        ]));*/
     }
 
     /**
@@ -46,9 +46,9 @@ class SubuserObserver
     {
         event(new Events\Subuser\Deleted($subuser));
 
-        $subuser->user->notify(new RemovedFromServer([
+        /*$subuser->user->notify(new RemovedFromServer([
             'user' => $subuser->user->name_first,
             'name' => $subuser->server->name,
-        ]));
+        ]));*/
     }
 }
