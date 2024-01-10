@@ -35,6 +35,7 @@ return [
     'subusers' => [
         'editing_self' => 'Editing your own subuser account is not permitted.',
         'user_is_owner' => 'You cannot add the server owner as a subuser for this server.',
+        'user_does_not_exist' => 'A user account with this email address does not exist.',
         'subuser_exists' => 'A user with that email address is already assigned as a subuser for this server.',
     ],
     'databases' => [
