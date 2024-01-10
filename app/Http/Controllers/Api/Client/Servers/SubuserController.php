@@ -59,6 +59,7 @@ class SubuserController extends ClientApiController
      * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      * @throws \Pterodactyl\Exceptions\Service\Subuser\ServerSubuserExistsException
      * @throws \Pterodactyl\Exceptions\Service\Subuser\UserIsServerOwnerException
+     * @throws \Pterodactyl\Exceptions\Service\Subuser\UserDoesNotExistException
      * @throws \Throwable
      */
     public function store(StoreSubuserRequest $request, Server $server): array

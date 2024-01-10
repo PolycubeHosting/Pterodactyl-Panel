@@ -12,6 +12,7 @@ use Pterodactyl\Contracts\Repository\UserRepositoryInterface;
 use Pterodactyl\Exceptions\Repository\RecordNotFoundException;
 use Pterodactyl\Exceptions\Service\Subuser\UserIsServerOwnerException;
 use Pterodactyl\Exceptions\Service\Subuser\ServerSubuserExistsException;
+use Pterodactyl\Exceptions\Service\Subuser\UserDoesNotExistException;
 
 class SubuserCreationService
 {
@@ -34,6 +35,7 @@ class SubuserCreationService
      * @throws \Pterodactyl\Exceptions\Model\DataValidationException
      * @throws ServerSubuserExistsException
      * @throws UserIsServerOwnerException
+     * @throws UserDoesNotExistException
      * @throws \Throwable
      */
     public function handle(Server $server, string $email, array $permissions): Subuser
@@ -53,7 +55,7 @@ class SubuserCreationService
             } catch (RecordNotFoundException) {
                 // Just cap the username generated at 64 characters at most and then append a random string
                 // to the end to make it "unique"...
-                $username = substr(preg_replace('/([^\w\.-]+)/', '', strtok($email, '@')), 0, 64) . Str::random(3);
+                /*$username = substr(preg_replace('/([^\w\.-]+)/', '', strtok($email, '@')), 0, 64) . Str::random(3);
 
                 $user = $this->userCreationService->handle([
                     'email' => $email,
@@ -61,7 +63,9 @@ class SubuserCreationService
                     'name_first' => 'Server',
                     'name_last' => 'Subuser',
                     'root_admin' => false,
-                ]);
+                ]);*/
+
+                throw new UserDoesNotExistException(trans('exceptions.subusers.user_does_not_exist'));
             }
 
             return $this->subuserRepository->create([
