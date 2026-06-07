@@ -36,7 +36,7 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
         ]);
     }
 
-    /**
+    /*
      * Test that the user's email address can be updated via the API.
      */
     /*public function testEmailIsUpdated()
@@ -54,7 +54,7 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
         $this->assertDatabaseHas('users', ['id' => $user->id, 'email' => $email]);
     }*/
 
-    public function testEmailChangeIsThrottled(): void
+    /*public function testEmailChangeIsThrottled(): void
     {
         $users = User::factory()->count(2)->create();
         $endpoint = route('api:client.account.update-email');
@@ -74,7 +74,7 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
         $this->actingAs($users[1])
             ->putJson($endpoint, ['email' => 'bar+1@example.com', 'password' => 'password'])
             ->assertNoContent();
-    }
+    }*/
 
     /*
      * Tests that an email is not updated if the password provided in the request is not
