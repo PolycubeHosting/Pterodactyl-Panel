@@ -29,10 +29,10 @@ Route::prefix('/account')->middleware(AccountSubject::class)->group(function () 
         Route::post('/two-factor/disable', [Client\TwoFactorController::class, 'delete']);
     });
 
-    //Route::put('/email', [Client\AccountController::class, 'updateEmail'])
+    // Route::put('/email', [Client\AccountController::class, 'updateEmail'])
     //    ->middleware('throttle')
     //    ->name('api:client.account.update-email');
-    //Route::put('/password', [Client\AccountController::class, 'updatePassword'])->name('api:client.account.update-password');
+    // Route::put('/password', [Client\AccountController::class, 'updatePassword'])->name('api:client.account.update-password');
 
     Route::get('/activity', Client\ActivityLogController::class)->name('api:client.account.activity');
 
@@ -117,7 +117,7 @@ Route::group([
         Route::middleware([ResourceLimit::Allocation->middleware()])
             ->post('/allocations', [Client\Servers\NetworkAllocationController::class, 'store']);
         Route::post('/allocations/{allocation}', [Client\Servers\NetworkAllocationController::class, 'update']);
-        //Route::post('/allocations/{allocation}/primary', [Client\Servers\NetworkAllocationController::class, 'setPrimary']);
+        // Route::post('/allocations/{allocation}/primary', [Client\Servers\NetworkAllocationController::class, 'setPrimary']);
         Route::delete('/allocations/{allocation}', [Client\Servers\NetworkAllocationController::class, 'delete']);
     });
 

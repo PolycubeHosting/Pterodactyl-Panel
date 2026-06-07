@@ -51,10 +51,10 @@ class FindAssignableAllocationService
             ->where('port', '>=', $start)
             ->where('port', '<=', $end)
             ->whereNull('server_id')
-            //->inRandomOrder()
+            // ->inRandomOrder()
             ->first();
 
-        //$allocation = $allocation ?? $this->createNewAllocation($server);
+        // $allocation = $allocation ?? $this->createNewAllocation($server);
 
         if (!$allocation) {
             throw new NoAutoAllocationSpaceAvailableException();

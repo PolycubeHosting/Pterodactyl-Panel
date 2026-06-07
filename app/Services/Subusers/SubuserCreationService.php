@@ -10,9 +10,9 @@ use Pterodactyl\Services\Users\UserCreationService;
 use Pterodactyl\Repositories\Eloquent\SubuserRepository;
 use Pterodactyl\Contracts\Repository\UserRepositoryInterface;
 use Pterodactyl\Exceptions\Repository\RecordNotFoundException;
+use Pterodactyl\Exceptions\Service\Subuser\UserDoesNotExistException;
 use Pterodactyl\Exceptions\Service\Subuser\UserIsServerOwnerException;
 use Pterodactyl\Exceptions\Service\Subuser\ServerSubuserExistsException;
-use Pterodactyl\Exceptions\Service\Subuser\UserDoesNotExistException;
 
 class SubuserCreationService
 {
