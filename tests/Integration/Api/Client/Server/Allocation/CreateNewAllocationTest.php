@@ -31,6 +31,8 @@ class CreateNewAllocationTest extends ClientApiIntegrationTestCase
         [$user, $server] = $this->generateTestAccount($permission);
         $server->update(['allocation_limit' => 2]);
 
+        Allocation::factory()->create(['node_id' => $server->node_id, 'ip' => $server->allocation->ip, 'port' => 5000]);
+
         $response = $this->actingAs($user)->postJson($this->link($server, '/network/allocations'));
         $response->assertJsonPath('object', Allocation::RESOURCE_NAME);
 

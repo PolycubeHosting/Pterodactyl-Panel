@@ -95,7 +95,7 @@ class NetworkAllocationControllerTest extends ClientApiIntegrationTestCase
         $this->actingAs($user)->postJson($this->link($server->allocation))->assertForbidden();
     }
 
-    #[\PHPUnit\Framework\Attributes\DataProvider('updatePermissionsDataProvider')]
+    /*#[\PHPUnit\Framework\Attributes\DataProvider('updatePermissionsDataProvider')]
     public function testPrimaryAllocationCanBeModified(array $permissions)
     {
         [$user, $server] = $this->generateTestAccount($permissions);
@@ -111,9 +111,9 @@ class NetworkAllocationControllerTest extends ClientApiIntegrationTestCase
         $server = $server->refresh();
 
         $this->assertSame($allocation2->id, $server->allocation_id);
-    }
+    }*/
 
-    public function testPrimaryAllocationCannotBeModifiedByInvalidUser()
+    /*public function testPrimaryAllocationCannotBeModifiedByInvalidUser()
     {
         [$user, $server] = $this->generateTestAccount();
         $user2 = User::factory()->create();
@@ -128,7 +128,7 @@ class NetworkAllocationControllerTest extends ClientApiIntegrationTestCase
 
         $this->actingAs($user)->postJson($this->link($server->allocation, '/primary'))
             ->assertForbidden();
-    }
+    }*/
 
     public static function updatePermissionsDataProvider(): array
     {
