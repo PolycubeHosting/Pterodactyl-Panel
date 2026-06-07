@@ -34,18 +34,28 @@ class FindAssignableAllocationService
             throw new AutoAllocationNotEnabledException();
         }
 
-        // Attempt to find a given available allocation for a server. If one cannot be found
-        // we will fall back to attempting to create a new allocation that can be used for the
-        // server.
+        $start = config('pterodactyl.client_features.allocations.range_start', null);
+        $end = config('pterodactyl.client_features.allocations.range_end', null);
+
+        if (!$start || !$end) {
+            throw new AutoAllocationNotEnabledException();
+        }
+
         /** @var Allocation|null $allocation */
         $allocation = $server->node->allocations()
             ->lockForUpdate()
             ->where('ip', $server->allocation->ip)
+            ->where('port', '>=', $start)
+            ->where('port', '<=', $end)
             ->whereNull('server_id')
-            ->inRandomOrder()
+            //->inRandomOrder()
             ->first();
 
-        $allocation = $allocation ?? $this->createNewAllocation($server);
+        //$allocation = $allocation ?? $this->createNewAllocation($server);
+
+        if (!$allocation) {
+            throw new NoAutoAllocationSpaceAvailableException();
+        }
 
         $allocation->update(['server_id' => $server->id]);
 
