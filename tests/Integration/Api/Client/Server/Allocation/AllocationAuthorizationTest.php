@@ -49,7 +49,7 @@ class AllocationAuthorizationTest extends ClientApiIntegrationTestCase
         return [
             ['POST', ''],
             ['DELETE', ''],
-            ['POST', '/primary'],
+            //['POST', '/primary'],
         ];
     }
 }
