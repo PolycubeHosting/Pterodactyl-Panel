@@ -117,7 +117,7 @@ Route::group([
         Route::middleware([ResourceLimit::Allocation->middleware()])
             ->post('/allocations', [Client\Servers\NetworkAllocationController::class, 'store']);
         Route::post('/allocations/{allocation}', [Client\Servers\NetworkAllocationController::class, 'update']);
-        Route::post('/allocations/{allocation}/primary', [Client\Servers\NetworkAllocationController::class, 'setPrimary']);
+        //Route::post('/allocations/{allocation}/primary', [Client\Servers\NetworkAllocationController::class, 'setPrimary']);
         Route::delete('/allocations/{allocation}', [Client\Servers\NetworkAllocationController::class, 'delete']);
     });
 
