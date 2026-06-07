@@ -4,8 +4,9 @@ namespace Pterodactyl\Observers;
 
 use Pterodactyl\Events;
 use Pterodactyl\Models\Subuser;
-//use Pterodactyl\Notifications\AddedToServer;
-//use Pterodactyl\Notifications\RemovedFromServer;
+
+// use Pterodactyl\Notifications\AddedToServer;
+// use Pterodactyl\Notifications\RemovedFromServer;
 
 class SubuserObserver
 {

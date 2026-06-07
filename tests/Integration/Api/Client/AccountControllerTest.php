@@ -76,7 +76,7 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
             ->assertNoContent();
     }
 
-    /**
+    /*
      * Tests that an email is not updated if the password provided in the request is not
      * valid for the account.
      */
@@ -95,7 +95,7 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
         $response->assertJsonPath('errors.0.detail', 'The password provided was invalid for this account.');
     }*/
 
-    /**
+    /*
      * Tests that an email is not updated if an invalid email address is passed through
      * in the request.
      */
@@ -151,7 +151,7 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
         $response->assertJsonPath('errors.0.meta.source_field', 'email');
     }*/
 
-    /**
+    /*
      * Test that the password for an account can be successfully updated.
      */
     /*public function testPasswordIsUpdated()
@@ -191,7 +191,7 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
         Bus::assertDispatched(fn(RevokeSftpAccessJob $job) => $job->user === $user->uuid && $job->target->is($server2->node));
     }*/
 
-    /**
+    /*
      * Test that the password for an account is not updated if the current password is not
      * provided correctly.
      */
@@ -211,7 +211,7 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
         $response->assertJsonPath('errors.0.detail', 'The password provided was invalid for this account.');
     }*/
 
-    /**
+    /*
      * Test that a validation error is returned to the user if no password is provided or if
      * the password is below the minimum password length.
      */
@@ -234,7 +234,7 @@ class AccountControllerTest extends ClientApiIntegrationTestCase
             ->assertJsonPath('errors.0.meta.rule', 'min');
     }*/
 
-    /**
+    /*
      * Test that a validation error is returned if the password passed in the request
      * does not have a confirmation, or the confirmation is not the same as the password.
      */
