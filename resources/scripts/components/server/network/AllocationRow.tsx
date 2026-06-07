@@ -49,7 +49,7 @@ const AllocationRow = ({ allocation }: Props) => {
             .then(() => setLoading(false));
     }, 750);
 
-    const setPrimaryAllocation = () => {
+    /*const setPrimaryAllocation = () => {
         clearFlashes();
         mutate((data) => data?.map((a) => ({ ...a, isDefault: a.id === allocation.id })), false);
 
@@ -57,7 +57,7 @@ const AllocationRow = ({ allocation }: Props) => {
             clearAndAddHttpError(error);
             mutate();
         });
-    };
+    };*/
 
     return (
         <GreyRowBox $hoverable={false} className={'flex-wrap md:flex-nowrap mt-2'}>
@@ -104,11 +104,11 @@ const AllocationRow = ({ allocation }: Props) => {
                         <Can action={'allocation.delete'}>
                             <DeleteAllocationButton allocation={allocation.id} />
                         </Can>
-                        <Can action={'allocation.update'}>
+                        {/*<Can action={'allocation.update'}>
                             <Button.Text size={Button.Sizes.Small} onClick={setPrimaryAllocation}>
                                 Make Primary
                             </Button.Text>
-                        </Can>
+                        </Can>*/}
                     </>
                 )}
             </div>
