@@ -46,6 +46,14 @@ class UsernameTest extends TestCase
             ['123username123'],
             ['123-user.name'],
             ['123456'],
+            ['_username'],
+            ['username_'],
+            ['_username_'],
+            ['-username'],
+            ['.username'],
+            ['username-'],
+            ['username.'],
+            ['1234_'],
         ];
     }
 
@@ -55,18 +63,10 @@ class UsernameTest extends TestCase
     public static function invalidUsernameDataProvider(): array
     {
         return [
-            ['_username'],
-            ['username_'],
-            ['_username_'],
-            ['-username'],
-            ['.username'],
-            ['username-'],
-            ['username.'],
             ['user*name'],
             ['user^name'],
             ['user#name'],
             ['user+name'],
-            ['1234_'],
         ];
     }
 }
